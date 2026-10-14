@@ -10,12 +10,7 @@ The algorithm runs on a Seeed XIAO RP2040 with an ADS1220 ADC (SPI, DRDY interru
 firmware/Brain_ECoG_Serial.ino   on-device implementation (ADS1220 + RP2040)
 analysis/stream_fft_judge.py     offline replica + real-time streaming visualizer (pygame)
 analysis/offline_calibration.py  headless calibration harness (filter/threshold/lock/duration grid)
-analysis/export_stream_video.py  headless MP4 export of the streaming display
-analysis/make_figure_b.py        figure panel for the adaptive-threshold result
-analysis/make_comparison_figure.py  old (fixed threshold) vs new (adaptive) comparison figure
 data/EPILEPSY.csv                example ECoG recording (600 samples/s, two columns: time, amplitude in mV)
-data/figure_data_new.xlsx        algorithm output (time, s-score, seizure point, therapy)
-data/figure_closed-loop processing.xlsx  reference output of the original fixed-threshold system
 ```
 
 ## Algorithm
@@ -42,9 +37,8 @@ Sampling: the reference recording is 600 samples/s; the device firmware acquires
 ## Quick start
 
 ```bash
-pip install numpy pygame imageio imageio-ffmpeg matplotlib openpyxl
+pip install numpy pygame
 python analysis/stream_fft_judge.py        # streaming visualizer on data/EPILEPSY.csv
-python analysis/export_stream_video.py     # render the display to closed_loop_stream_new.mp4
 python analysis/offline_calibration.py --final --D 22 --T 5 --lock 30 --R 0.0012
 ```
 

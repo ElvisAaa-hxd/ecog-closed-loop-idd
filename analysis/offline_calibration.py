@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 """Offline calibration harness for the threshold-adjustable closed-loop algorithm.
 
-Replicates Stream_the_data-Version2_FFT_python_judge.py logic exactly
-(same sample order, same window/lock semantics), so chosen constants can be
-written back 1:1. Ground truth is extracted from figure_closed-loop processing.xlsx.
+Replicates stream_fft_judge.py logic exactly (same sample order, same
+window/lock semantics), so chosen constants can be written back 1:1.
 
 Usage:
   python offline_calibration.py --filter    # Step 1: bandpass candidates
@@ -35,6 +34,9 @@ def load_csv():
 
 
 def load_ground_truth():
+    if not os.path.exists(XLSX):
+        print("note: %s not found; ground-truth comparison disabled" % XLSX)
+        return [], []
     z = zipfile.ZipFile(XLSX)
     ns = "{http://schemas.openxmlformats.org/spreadsheetml/2006/main}"
     sheet = ET.fromstring(z.read("xl/worksheets/sheet1.xml"))

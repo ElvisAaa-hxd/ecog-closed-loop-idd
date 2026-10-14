@@ -3,9 +3,5 @@ __pycache__/
 .DS_Store
 data_output*.txt
 calibration_overlay.png
-closed_loop_stream_new.mp4
-figure_b_adaptive_oldstyle_v2.*
-figure_old_vs_new.*
 *.alignment.json
 *.alignment.svg
-*.collision-audit.*
